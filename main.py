@@ -69,7 +69,7 @@ async def deploy_server(ctx, target_user, ram, cores):
             description="```Error: Instance Limit Reached```", color=0xff0000))
         return
 
-    image = "ghcr.io/ma4z-spec/hydren-vm:latest"
+    image = "ubuntu-22.04-with-tmate"
     try:
         container_id = subprocess.check_output([
             "docker", "run", "-itd", "--privileged", "--cap-add=ALL",
