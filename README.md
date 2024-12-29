@@ -31,8 +31,12 @@ To start the bot, follow these steps:
    ```bash
    apt install python3 pip -y && pip install docker discord.py
    ```
+3. **Install Dockerfile Dependencies**
+   ```bash
+   docker build -t ubuntu-22.04-with-tmate -f Dockerfile1 .
+   ```
 
-3. **Run the bot:**
+5. **Run the bot:**
 
    Finally, start the bot by executing:
 
