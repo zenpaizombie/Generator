@@ -21,7 +21,7 @@ To start the bot, follow these steps:
 
    ```bash
    git clone https://github.com/zenpaizombie/Generator.git
-   cd VPS-Generator
+   cd Generator
    ```
    
 2. **Install Python dependencies:**
