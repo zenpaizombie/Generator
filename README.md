@@ -33,7 +33,7 @@ To start the bot, follow these steps:
    ```
 3. **Install Dockerfile Dependencies**
    ```bash
-   docker build -t ubuntu-22.04-with-tmate -f Dockerfile1 .
+   docker build -t ubuntu-22.04-with-tmate -f Dockerfile .
    ```
 
 5. **Run the bot:**
@@ -43,6 +43,7 @@ To start the bot, follow these steps:
    ```bash
    python3 main.py
    ```
+# If You Get Any Problem Make Ticket On Our [Discord](https://discord.gg/72bHVS5ZC3) To Get Support!!
 
 ## Improvements
 
