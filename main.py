@@ -237,7 +237,7 @@ async def on_ready():
     """Set bot status."""
     await bot.change_presence(
         status=discord.Status.dnd,
-        activity=discord.Game(name="with (SERVER)")
+        activity=discord.Game(name="with ${SERVER}")
     )
     print(f"Logged in as {bot.user}")
 
