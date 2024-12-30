@@ -1,12 +1,13 @@
 #!/bin/bash
 
-echo " ██ ███    ███ ██    ██  ██████  ███████ ██    ██ ██   ██ ██  
-██  ████  ████  ██  ██  ██    ██ ██      ██    ██ ██   ██  ██ 
-██  ██ ████ ██   ████   ██    ██ █████   ██    ██ ███████  ██ 
-██  ██  ██  ██    ██    ██    ██ ██       ██  ██  ██   ██  ██ 
- ██ ██      ██    ██     ██████  ██        ████   ██   ██ ██ "
+echo ".____    .__       .__     __   
+|    |   |__| ____ |  |___/  |_ 
+|    |   |  |/ ___\|  |  \   __\
+|    |___|  / /_/  >   Y  \  |  
+|_______ \__\___  /|___|  /__|  
+        \/ /_____/      \/      "
 
-echo Make your own Free VPS Hosting, Dont Allow Mining
+echo Make your own VPS Hosting, Dont Allow Mining!!
 
 read -p "Are you sure you want to proceed? Agree to not allow mining (y/n): " -n 1 -r
 echo
@@ -20,26 +21,35 @@ cd ~
 
 echo "Installing python3-pip and docker."
 sudo apt update
-sudo apt install -y python3-pip docker.io
+sudo apt install -y python3 pip docker.io
 echo Installed successfully
 
 echo "Writing Dockerfile..."
 cat <<EOF > Dockerfile
 FROM ubuntu:22.04
 
-RUN apt update
-RUN apt install -y tmate
+RUN apt-get update && \
+    apt-get install -y tmate curl sudo neofetch openssh-server openssh-client && \
+    sed -i 's/^#\?\s*PermitRootLogin\s\+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    echo 'root:root' | chpasswd && \
+    printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d && \
+    apt-get install -y systemd systemd-sysv dbus dbus-user-session && \
+    printf "systemctl start systemd-logind" >> /etc/profile 
+
+CMD ["bash"]
+ENTRYPOINT ["/sbin/init"]
 EOF
 
 echo Made successfully - Building Docker image.
 echo "Building Docker Image"
-sudo docker build -t ubuntu-22.04-with-tmate .
+sudo docker build -t ubuntu-22.04-with-tmate -f Dockerfile .
 echo Built successfully
 echo "Downloading main.py from the GitHub repository..."
-wget -O main.py https://raw.githubusercontent.com/katy-the-kat/discord-vps-creator/refs/heads/main/v3ds
+wget -O main.py https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/main.py
+wget https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/servers.txt
 echo Downloaded successfully
 echo "Installing Python packages: discord and docker..."
-pip3 install discord docker
+pip install discord.py docker
 echo "Please enter your Discord bot token, Make a bot at discord.dev and get the token, You dont need any intents:"
 read -r DISCORD_TOKEN
 echo "Updating main.py with the provided Discord token..."
