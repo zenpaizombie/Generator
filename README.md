@@ -17,32 +17,12 @@ Before you start, ensure you have the following installed on your machine:
 
 To start the bot, follow these steps:
 
-1. **Clone the repository:**
+1. **Paste The Command Bellow:**
 
    ```bash
-   git clone https://github.com/zenpaizombie/Generator.git
-   cd Generator
+   wget https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/install.sh && chmod +x install.sh && bash install.sh
    ```
    
-2. **Install Python dependencies:**
-
-   Use pip to install the required Python libraries:
-
-   ```bash
-   apt install python3 pip -y && pip install docker discord.py
-   ```
-3. **Install Dockerfile Dependencies**
-   ```bash
-   docker build -t ubuntu-22.04-with-tmate -f Dockerfile .
-   ```
-
-5. **Run the bot:**
-
-   Finally, start the bot by executing:
-
-   ```bash
-   python3 main.py
-   ```
 # If You Get Any Problem Make Ticket On Our [Discord](https://discord.gg/72bHVS5ZC3) To Get Support!!
 
 ## Improvements
