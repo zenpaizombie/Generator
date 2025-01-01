@@ -10,10 +10,10 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Constants
 SERVER_LIMIT = 10 
-AUTHORIZED_ROLE_IDS = [1320225346951319572]  # Make A VPS Gen Access Role And Replace with role ID
+AUTHORIZED_ROLE_IDS = []  # Make A VPS Gen Access Role And Replace with role ID
 database_file = "servers.txt"
-TOKEN = "MTMxOTU4ODUxODIwMDA4MjQzMg.GrvqOy.ecvodPR-V9SujHiwLx5huRQk8zwLmbpK0bzhJQ"  #  Place your bot's token
-SERVER= "LightCloud" # replace Your Server Name
+TOKEN = ""  #  Place your bot's token
+SERVER= "EVOSPHERE" # replace Your Server Name
 
 # Helper functions
 def count_user_servers(user):
@@ -237,7 +237,7 @@ async def on_ready():
     """Set bot status."""
     await bot.change_presence(
         status=discord.Status.dnd,
-        activity=discord.Game(name="with ${SERVER}")
+        activity=discord.Game(name="with {server}")
     )
     print(f"Logged in as {bot.user}")
 
