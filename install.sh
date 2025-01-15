@@ -52,7 +52,7 @@ echo "Installing Python packages: discord and docker..."
 pip install discord.py docker
 echo "Please enter your Discord bot token, Make a bot at discord.dev and get the token, You dont need any intents:"
 read -r TOKEN
-echo "Updating main.py with the provided Discord token..."
+echo "Updating main.py with the provided token..."
 sed -i "s/TOKEN = ''/TOKEN = 'TOKEN'/" main.py
 echo "Starting the Discord bot..."
 echo "To start the bot in the future, run: python3 main.py"
