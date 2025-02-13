@@ -20,7 +20,7 @@ To start the bot, follow these steps:
 1. **Paste The Command Bellow:**
 
    ```bash
-   wget https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/install.sh && chmod +x install.sh && bash install.sh
+   bash <(curl -s https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/install.sh)
    ```
    
 # If You Get Any Problem Make Ticket On Our [Discord](https://discord.gg/72bHVS5ZC3) To Get Support!!
