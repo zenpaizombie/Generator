@@ -50,7 +50,7 @@ wget https://raw.githubusercontent.com/zenpaizombie/Generator/refs/heads/main/se
 echo Downloaded successfully
 echo "Installing Python packages: discord and docker..."
 pip install discord.py docker
-echo "Please enter your Discord bot token, Make a bot at discord.dev and get the token, You dont need any intents:"
+echo "Bot Token:"
 read -r TOKEN
 echo "Updating main.py with the provided token..."
 sed -i "s/TOKEN = ''/TOKEN = 'TOKEN'/" main.py
