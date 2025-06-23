@@ -21,7 +21,8 @@ cd ~
 
 echo "Installing python3, pip and docker."
 sudo apt update
-sudo apt install python3 pip docker docker-compose -y
+sudo apt install python3 pip docker.io docker-compose -y
+sudo systemctl start docker && sudo systemctl enable docker
 echo Installed successfully
 
 echo "Writing Dockerfile..."
