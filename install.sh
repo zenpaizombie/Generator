@@ -28,17 +28,26 @@ echo "Writing Dockerfile..."
 cat <<EOF > Dockerfile
 FROM ubuntu:22.04
 
-RUN apt-get update && \
-    apt-get install -y tmate curl sudo neofetch openssh-server openssh-client && \
-    sed -i 's/^#\?\s*PermitRootLogin\s\+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
-    echo 'root:root' | chpasswd && \
-    printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d && \
-    apt-get install -y systemd systemd-sysv dbus dbus-user-session && \
-    printf "systemctl start systemd-logind" >> /etc/profile 
+LABEL maintainer='Anton Melekhin'
 
-CMD ["bash"]
-ENTRYPOINT ["/sbin/init"]
-EOF
+ENV container=docker \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN INSTALL_PKGS='findutils iproute2 python3 python3-apt sudo systemd' \
+    && apt-get update && apt-get install $INSTALL_PKGS -y --no-install-recommends \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN find /etc/systemd/system \
+    /lib/systemd/system \
+    -path '*.wants/*' \
+    -not -name '*journald*' \
+    -not -name '*systemd-tmpfiles*' \
+    -not -name '*systemd-user-sessions*' \
+    -print0 | xargs -0 rm -vf
+
+VOLUME [ "/sys/fs/cgroup" ]
+
+ENTRYPOINT [ "/lib/systemd/systemd" ]
 
 echo Made successfully - Building Docker image.
 echo "Building Docker Image"
